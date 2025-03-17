@@ -123,23 +123,27 @@ class Maze(object):
     def _create_cells(self):
 
         top_left_x = self.x1
-        top_left_y = self.x1
+        top_left_y = self.y1
         bottom_right_x = self.x1 + self.cell_size_x
         bottom_right_y = self.y1 + self.cell_size_y
 
         cell_list = [[] for i in range(self.num_cols)]
 
-        for row in cell_list:
+        for column in cell_list:
 
-            for i in range(self.num_cols):
-                cell_list[i].append(Cell(top_left_x, top_left_y, bottom_right_x, bottom_right_y, self.win))
-                top_left_x += self.cell_size_x
-                bottom_right_x += self.cell_size_y
-
-            top_left_y += self.cell_size_y
+            for cell in range(self.num_rows):
+                column.append(Cell(top_left_x, top_left_y, bottom_right_x, bottom_right_y, self.win))
+                top_left_y += self.cell_size_y
+                bottom_right_y += self.cell_size_y
+            
+            top_left_y = self.y1
+            bottom_right_y = self.y1 + self.cell_size_y
             top_left_x += self.cell_size_x
+            bottom_right_x += self.cell_size_x
+           
 
-        self.cell_list = cell_list            
+        self.cell_list = cell_list     
+        return cell_list       
 
 
 
