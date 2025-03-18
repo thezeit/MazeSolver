@@ -82,18 +82,18 @@ class Maze:
             p, q = can_visit[random.randrange(0, len(can_visit))]
 
             # Delete walls between current and next cell
-            if p > i:
-                self._cells[i][j].has_bottom_wall = False
-                self._cells[p][q].has_top_wall = False
-            elif p < i:
-                self._cells[i][j].has_top_wall = False
-                self._cells[p][q].has_bottom_wall = False
-            elif q > j:
-                self._cells[i][j].has_right_wall = False
-                self._cells[p][q].has_left_wall = False
-            elif q < j:
-                self._cells[i][j].has_left_wall = False
-                self._cells[p][q].has_right_wall = False
+            if p > i:  # moving right in the columns
+                self._cells[i][j].has_right_wall = False  
+                self._cells[p][q].has_left_wall = False   
+            elif p < i:  # moving left in the columns
+                self._cells[i][j].has_left_wall = False   
+                self._cells[p][q].has_right_wall = False  
+            elif q > j:  # moving down in the rows
+                self._cells[i][j].has_bottom_wall = False 
+                self._cells[p][q].has_top_wall = False    
+            elif q < j:  # moving up in the rows
+                self._cells[i][j].has_top_wall = False    
+                self._cells[p][q].has_bottom_wall = False 
 
             self._draw_cell(i, j)
             self._break_walls_r(p, q)
@@ -111,7 +111,7 @@ class Maze:
         
         # Check each direction
         can_visit = []
-        if i + 1 <= self._num_cols -1 and self._cells[i+1][j].visited  == False and self._cells[i][j].has_right_wall == False:
+        if i + 1 <= self._num_cols -1 and self._cells[i+1][j].visited == False and self._cells[i][j].has_right_wall == False:
             can_visit.append((i+1, j))
         if i - 1 >= 0 and self._cells[i-1][j].visited == False and self._cells[i][j].has_left_wall == False:
             can_visit.append((i-1, j))
