@@ -1,30 +1,34 @@
 import unittest
-from main import Maze, Window
+
+from maze import Maze
+
 
 class Tests(unittest.TestCase):
-
-    
-
     def test_maze_create_cells(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        self.assertEqual(
+            len(m1._cells),
+            num_cols,
+        )
+        self.assertEqual(
+            len(m1._cells[0]),
+            num_rows,
+        )
 
-        test_win = Window(500, 500)
-        cell_size_x = 12
-        cell_size_y = 10
-        m1 = Maze(0, 0, cell_size_x, cell_size_y, test_win, 10)
-        m1._create_cells()
-        self.assertEqual(len(m1.cell_list), 40)
-        self.assertEqual(len(m1.cell_list[0]), 48)
-
-    def test_maze_create_cells_two(self):
-
-        test_win_two = Window(100, 100)
-        cell_size_x = 12
-        cell_size_y = 10
-        m2 = Maze(0, 0, cell_size_x, cell_size_y, test_win_two, 10)
-        m2._create_cells()
-        self.assertEqual(len(m2.cell_list), 6)
-        self.assertEqual(len(m2.cell_list[0]), 8)
-
+    def test_maze_break_entrance_and_exit(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        self.assertEqual(
+            m1._cells[0][0].has_top_wall,
+            False,
+        )
+        self.assertEqual(
+            m1._cells[num_cols - 1][num_rows - 1].has_bottom_wall,
+            False,
+        )
 
 
 if __name__ == "__main__":
