@@ -1,9 +1,5 @@
-test_list = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
+direction = (3, 5)
 
-]
+p, q = direction
 
-print(test_list[2][2])
-
+print(p)
